@@ -13,7 +13,7 @@ weatherForm.addEventListener('submit', (event) => {
     messageTwo.textContent = ''
 
     //fetch is a js function for async http calls which is supported by all modern browsers
-    fetch('http://localhost:3000/weather?address=' + location).then((response) => {
+    fetch('/weather?address=' + location).then((response) => {
         response.json().then((data) => {
             if (data.error) {
                 messageOne.textContent = data.error

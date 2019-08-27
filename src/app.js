@@ -10,6 +10,11 @@ const publicDirectoryPath = path.join(__dirname, '../public')
 const viewsPath = path.join(__dirname, '../templates/views')
 const partialsPath = path.join(__dirname, '../templates/partials')
 
+// this is the env variable which a deployment server will provide when it staarts the app
+// this can be any random dynamic value
+// 3000 will be used locally as env variable will not be set
+const port = process.env.PORT || 3000
+
 const app = express()
 
 //set up handlebars engine
@@ -97,6 +102,13 @@ app.get('*', (req, res) => {
     })
 })
 
-app.listen(3000, () => {
-    console.log('Server is up on port 3000..')
+// static port can be used to test the app locally
+// app.listen(3000, () => {
+//     console.log('Server is up on port 3000..')
+// })
+
+// here the port is an env variable that we read  in the code above
+// which will be set by servers like heroku
+app.listen(port, () => {
+    console.log('Server is up on port... ' + port)
 })
